@@ -76,6 +76,14 @@ ingress:
   annotations: 
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+
+     # ALB 헬스체크
+    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/success-codes: "200"
+
+    # SG 자동 처리 
+    alb.ingress.kubernetes.io/manage-backend-security-group-rules: "true"
   hosts:
     - host: ""
       paths:
