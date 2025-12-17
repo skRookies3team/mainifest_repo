@@ -20,6 +20,12 @@ imagePullSecrets:
 env:
   - name: SPRING_PROFILES_ACTIVE
     value: prod
+
+envFrom:
+  - secretRef:
+      name: api-gateway-secret
+  - configMapRef:
+      name: api-gateway-config
  
 # This is to override the chart name.
 nameOverride: ""
