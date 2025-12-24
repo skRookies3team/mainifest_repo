@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "petmate-chart.name" -}}
+{{- define "mate-service.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "petmate-chart.fullname" -}}
+{{- define "mate-service.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "petmate-chart.chart" -}}
+{{- define "mate-service.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "petmate-chart.labels" -}}
-helm.sh/chart: {{ include "petmate-chart.chart" . }}
-{{ include "petmate-chart.selectorLabels" . }}
+{{- define "mate-service.labels" -}}
+helm.sh/chart: {{ include "mate-service.chart" . }}
+{{ include "mate-service.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "petmate-chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "petmate-chart.name" . }}
+{{- define "mate-service.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "mate-service.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "petmate-chart.serviceAccountName" -}}
+{{- define "mate-service.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "petmate-chart.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "mate-service.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

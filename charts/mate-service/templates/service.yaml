@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "petmate-service.fullname" . }}
+  name: {{ include "mate-service.fullname" . }}
   labels:
-    {{- include "petmate-service.labels" . | nindent 4 }}
+    {{- include "mate-service.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "petmate-service.selectorLabels" . | nindent 4 }}
+    {{- include "mate-service.selectorLabels" . | nindent 4 }}

@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "petmate-chart.fullname" . }}
+  name: {{ include "mate-service.fullname" . }}
   labels:
-    {{- include "petmate-chart.labels" . | nindent 4 }}
+    {{- include "mate-service.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "petmate-chart.fullname" . }}
+    name: {{ include "mate-service.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
